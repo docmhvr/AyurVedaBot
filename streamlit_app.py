@@ -2,14 +2,13 @@ import streamlit as st
 import time
 
 # Title
-st.title("🌿 AyurVeda AI ChatBot")
-
-st.image("AyurVedaBot.webp")
+st.title("🌿 AyurVeda AI ChatBot 🌿")
 
 # Introduction text
-st.write(
-    "Welcome to AyurVeda AI, bringing you ancient Ayurvedic solutions for health and well-being!"
-)
+st.write("Welcome to AyurVeda AI, bringing you ancient Ayurvedic solutions for health and well-being!")
+
+# ChatBot Image
+st.image("AyurVedaBot.webp")
 
 # Nvidia NIM TODO
 
