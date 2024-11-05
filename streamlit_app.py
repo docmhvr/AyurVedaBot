@@ -12,11 +12,11 @@ st.write("Welcome to AyurVeda AI, bringing you ancient Ayurvedic solutions for h
 st.image("AyurVedaBot.webp")
 
 # Nvidia NIM
-NVIDIA_API_KEY = st.secrets["NVIDIA_API_KEY"]
+API_KEY = st.secrets["NVIDIA_API_KEY"]
 
 client = OpenAI(
   base_url = "https://integrate.api.nvidia.com/v1",
-  api_key = NVIDIA_API_KEY
+  api_key = API_KEY
 )
 
 # Create a session state variable to store the chat messages. This ensures that the
