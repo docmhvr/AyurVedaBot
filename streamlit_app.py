@@ -1,4 +1,5 @@
 import streamlit as st
+from openai import OpenAI
 import time
 
 # Title
@@ -10,7 +11,13 @@ st.write("Welcome to AyurVeda AI, bringing you ancient Ayurvedic solutions for h
 # ChatBot Image
 st.image("AyurVedaBot.webp")
 
-# Nvidia NIM TODO
+# Nvidia NIM
+NVIDIA_API_KEY = st.secrets["NVIDIA_API_KEY"]
+
+client = OpenAI(
+  base_url = "https://integrate.api.nvidia.com/v1",
+  api_key = NVIDIA_API_KEY
+)
 
 # Create a session state variable to store the chat messages. This ensures that the
 # messages persist across reruns.
@@ -18,12 +25,6 @@ st.image("AyurVedaBot.webp")
 # Initialize session state to store chat messages
 if "messages" not in st.session_state:
     st.session_state.messages = []
-
-# Function to simulate streaming response by yielding one word at a time
-def stream_response(response_text):
-    for word in response_text.split():
-        yield word + " "  # Yield one word at a time with a space
-        time.sleep(0.2)  # Adjust the delay for streaming effect
 
 # Display chat history in sequential order
 for message in st.session_state.messages:
@@ -43,11 +44,20 @@ if user_input := st.chat_input("Tell me about your ailment?"):
     
     st.session_state.messages.append({"role": "user", "content": user_input})
 
-    # Placeholder for the assistant's streaming response
-    response_text = "Based on Ayurveda, here's some guidance for your well-being."
-    with st.chat_message("assistant", avatar="🌿"):
-        # Stream response by words using `st.write_stream`
-        st.write_stream(stream_response(response_text))
+    # Generate a response using the NVIDIA NIM API.
+    stream = client.chat.completions.create(
+    model="meta/llama-3.1-405b-instruct",
+    messages=[{"role":"user","content":user_input}],
+    temperature=0.2,
+    top_p=0.7,
+    max_tokens=1024,
+    stream=True
+    ) 
+
+    # Stream the response to the chat using `st.write_stream`, then store it in 
+    # session state.
+    with st.chat_message("assistant"):
+        response = st.write_stream(stream)    
 
     # Store the full response in session state to preserve chat history
-    st.session_state.messages.append({"role": "assistant", "content": response_text})
+    st.session_state.messages.append({"role": "assistant", "content": response})
