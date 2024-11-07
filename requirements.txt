@@ -1,2 +1,5 @@
 streamlit
 openai
+pymilvus
+pydrive
+llama-index
