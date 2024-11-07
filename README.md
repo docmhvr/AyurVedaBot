@@ -1,6 +1,6 @@
-# 🎈 Blank app template
+# 🎈 AyurVeda AI
 
-A simple Streamlit app template for you to modify!
+A AyurVeda RAG Chatbot using Nvidia and Llama-index with Streamlit UI!
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
 
