@@ -1,7 +1,7 @@
 import streamlit as st
 from openai import OpenAI
 from utils import connect_to_milvus, load_milvus_collection, generate_embedding, rerank_results
-from nemo_guardrails import Guardrails
+from nemoguardrails import Guardrails
 
 # Load API keys from Streamlit secrets
 EMBED_API_KEY = st.secrets["NVIDIA_EMBED_API_KEY"]
