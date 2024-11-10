@@ -1,0 +1,10 @@
+rules:
+  - name: sensitive_topic
+    trigger: user intent is sensitive
+    action:
+      - respond "I'm here to offer general information on Ayurvedic solutions for health concerns. For medical advice for a critical health condition, please consult a professional medical practitioner."
+
+  - name: off_topic
+    trigger: user says "joke" or "news" or "politics"
+    action:
+      - respond "I'm here to answer questions about Ayurveda and Natural treatments for health concerns. Can I help with something related?"

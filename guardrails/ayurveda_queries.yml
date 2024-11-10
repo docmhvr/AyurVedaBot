@@ -1,0 +1,10 @@
+rules:
+  - name: ayurveda_scope_check
+    trigger: user says "ayurveda" or "remedy" or "herbal" or "health"
+    response: "{{query}}"
+
+  - name: ayurveda_query
+    trigger: user intent is ayurveda_query
+    action:
+      - execute RAG_pipeline
+    fallback: "I'm here to answer questions specifically about Ayurveda. Can I help with something related?"
