@@ -3,4 +3,4 @@ openai
 pymilvus
 llama-index
 gdown
-nemo_guardrails
+nemoguardrails
