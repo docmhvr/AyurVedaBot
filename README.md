@@ -138,6 +138,17 @@ To customize the guardrails, edit the YAML files in the `guardrails/` folder. He
 
 ---
 
+## 📚 Knowledge Base
+
+The AyurVeda AI ChatBot draws its knowledge from a curated set of **Ayurvedic texts** stored as PDF files. These resources provide insights into herbal remedies, wellness practices, and traditional treatments, enabling the chatbot to offer guidance based on authentic Ayurvedic wisdom.
+
+- **Ayurvedic Textual PDFs**: The core texts for this project are available [here on Google Drive](https://drive.google.com/drive/folders/1yptl_faY4MPnBmuSQnwy2djSaLD459yI).
+- **Cover Folder**: The `cover/` folder in the repository contains cover images of these books for easy reference.
+
+These documents are parsed, embedded using **NVIDIA's NV Embed Model**, and stored in a Milvus vector database, creating a responsive and knowledge-rich chatbot experience.
+
+--- 
+
 ## 🚀 Future Improvements
 
 - **Expand Knowledge Base**: Add more Ayurvedic texts and resources.
