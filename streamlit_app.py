@@ -1,6 +1,6 @@
 import streamlit as st
 from openai import OpenAI
-from utils import connect_to_milvus, load_milvus_collection, generate_embedding, rerank_results, generate_final_response
+from utils import connect_to_milvus, load_milvus_collection, generate_embedding, rerank_results
 from nemo_guardrails import Guardrails
 
 # Load API keys from Streamlit secrets
