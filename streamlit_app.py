@@ -46,7 +46,7 @@ if user_input := st.chat_input("Tell me about your ailment or ask an Ayurvedic h
     user_message = {"role": "user", "content": user_input}
     
     # Generate response using LLMRails, which includes guardrails processing
-    response = rails.generate(messages=[user_message])
+    response = rails.generate(messages=[user_message], api_key=LLM_API_KEY)
     
     if response:  # If guardrails provide a response, use it
         assistant_reply = response["content"]
