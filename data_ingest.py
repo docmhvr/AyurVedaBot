@@ -8,11 +8,11 @@ from openai import OpenAI  # Access NVIDIA NV Embed API
 
 # List of file IDs for each PDF in the folder
 file_ids = [
-    "1fUhUfHL2Gk7Zi7FPH89ixgrYL4rz6MYD",  # Drive PDF's file ID
-    "1_o8Lqj2MCZsy7EbKBWP-m57YGJGK2QuA",
-    "184DEG5M1nB4AY4fNPFlPPLV6z2NHw55h",
-    "1pNLvTz0Z0x9lXKGF32yPiyz3gCPxkKcx",
-    "10A-6Zi2P-QZ2n5Q19XytQcXHVGqfd6b4"
+    # "1fUhUfHL2Gk7Zi7FPH89ixgrYL4rz6MYD",  # Drive PDF's file ID
+    # "1_o8Lqj2MCZsy7EbKBWP-m57YGJGK2QuA",
+    # "184DEG5M1nB4AY4fNPFlPPLV6z2NHw55h",
+    # "10A-6Zi2P-QZ2n5Q19XytQcXHVGqfd6b4"
+    "1pNLvTz0Z0x9lXKGF32yPiyz3gCPxkKcx"
 ]
 
 # Download PDFs from Google Drive
