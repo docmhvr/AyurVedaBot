@@ -1,0 +1,8 @@
+rails:
+  - file: guardrails/ayurveda_queries.yml
+  - file: guardrails/safety_rules.yml
+  - file: guardrails/response_relevance.yml
+
+llm_settings:
+  provider: openai  # Replace with your LLM provider (e.g., nvidia)
+  model: gpt-3.5-turbo  # Replace with your specific model

@@ -1,6 +1,6 @@
 rules:
-  - name: ensure_relevance
-    trigger: user intent is off-topic
+  - name: relevance_check
+    description: "Check for relevance and provide fallback if off-topic."
+    trigger: user intent includes ["irrelevant", "off-topic", "joke"]
     action:
-      - respond "I'm best suited to answer questions about Ayurveda and Natural treatments for health issues."
-      - execute fallback_response
+      - respond: "I am designed to answer questions about Ayurveda. How can I help with an Ayurvedic query?"
