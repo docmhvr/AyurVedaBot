@@ -9,7 +9,7 @@ RERANK_API_KEY = st.secrets["NVIDIA_RERANK_API_KEY"]
 LLM_API_KEY = st.secrets["NVIDIA_API_KEY"]  # Corrected to use NVIDIA_API_KEY for LLM
 
 # Initialize NeMo Guardrails using RailsConfig and LLMRails
-rails_config = RailsConfig(config_path="rails_config.yml")
+rails_config = RailsConfig(config_path="./config/grails_config.yml")
 llm_rails = LLMRails(rails_config)
 
 # Connect to Milvus and load collection

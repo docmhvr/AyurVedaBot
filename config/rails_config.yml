@@ -1,8 +1,16 @@
-rails:
-  - file: guardrails/ayurveda_queries.yml
-  - file: guardrails/safety_rules.yml
-  - file: guardrails/response_relevance.yml
+# rails_config.yml
 
+# Path to guardrail rule files
+rails:
+  files:
+    - guardrails/ayurveda_queries.yml
+    - guardrails/safety_rules.yml
+    - guardrails/response_relevance.yml
+
+# LLM settings for NeMo Guardrails
 llm_settings:
-  provider: openai  # Replace with your LLM provider (e.g., nvidia)
-  model: gpt-3.5-turbo  # Replace with your specific model
+  provider: nvidia  # Specify NVIDIA as the provider for NeMo Guardrails
+  model: meta/llama-3.1-405b-instruct  # NVIDIA LLM model you are using
+  temperature: 0.2  # Optional: controls randomness in the responses
+  max_tokens: 1024  # Sets the token limit to allow for longer responses
+  api_key: ${NVIDIA_API_KEY}  # Reference the NVIDIA API key from environment variables
