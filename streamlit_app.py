@@ -3,14 +3,14 @@ from openai import OpenAI
 from utils import connect_to_milvus, load_milvus_collection, generate_embedding, rerank_results
 from nemoguardrails import RailsConfig, LLMRails
 
+# Load the RailsConfig from the 'config' directory
+config = RailsConfig.from_path("config")  # Make sure 'rails_config.yml' is in the 'config' folder
+rails = LLMRails(config)
+
 # Load API keys from Streamlit secrets
 EMBED_API_KEY = st.secrets["NVIDIA_EMBED_API_KEY"]
 RERANK_API_KEY = st.secrets["NVIDIA_RERANK_API_KEY"]
-LLM_API_KEY = st.secrets["NVIDIA_API_KEY"]  # Corrected to use NVIDIA_API_KEY for LLM
-
-# Initialize NeMo Guardrails using RailsConfig and LLMRails
-rails_config = RailsConfig(config_path="./config/grails_config.yml")
-llm_rails = LLMRails(rails_config)
+LLM_API_KEY = st.secrets["NVIDIA_API_KEY"]
 
 # Connect to Milvus and load collection
 connect_to_milvus()
@@ -42,14 +42,16 @@ if user_input := st.chat_input("Tell me about your ailment or ask an Ayurvedic h
     with st.chat_message("user", avatar="👨🏻‍💻"):
         st.markdown(user_input)
 
-    # Step 1: Check if the input passes NeMo Guardrails
-    guardrails_result = llm_rails.apply_guardrails(user_input)
+    # Prepare user input for guardrails
+    user_message = {"role": "user", "content": user_input}
     
-    if guardrails_result and guardrails_result.response:
-        # If guardrails provide a specific response, use it
-        response = guardrails_result.response
+    # Generate response using LLMRails, which includes guardrails processing
+    response = rails.generate(messages=[user_message])
+    
+    if response:  # If guardrails provide a response, use it
+        assistant_reply = response["content"]
     else:
-        # If the input is within Ayurveda scope, process the RAG pipeline
+        # If guardrails didn't respond, fall back on RAG pipeline for response
         query_embedding = generate_embedding(user_input, EMBED_API_KEY)
         search_params = {"metric_type": "L2", "params": {"nprobe": 10}}
         results = collection.search(data=[query_embedding], anns_field="embedding", param=search_params, limit=5)
@@ -78,7 +80,7 @@ if user_input := st.chat_input("Tell me about your ailment or ask an Ayurvedic h
                 full_response += chunk["choices"][0]["delta"]["content"]
                 response_placeholder.markdown(full_response)
         
-        response = full_response
+        assistant_reply = full_response
 
     # Display the assistant's response
-    st.session_state.messages.append({"role": "assistant", "content": response})
+    st.session_state.messages.append({"role": "assistant", "content": assistant_reply})
