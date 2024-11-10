@@ -13,4 +13,3 @@ llm_settings:
   model: meta/llama-3.1-405b-instruct  # NVIDIA LLM model you are using
   temperature: 0.2  # Optional: controls randomness in the responses
   max_tokens: 1024  # Sets the token limit to allow for longer responses
-  api_key: ${NVIDIA_API_KEY}  # Reference the NVIDIA API key from environment variables
