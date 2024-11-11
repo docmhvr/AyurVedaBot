@@ -15,6 +15,8 @@ LLM_API_KEY = st.secrets["NVIDIA_API_KEY"]
 # Connect to Milvus and load collection
 collection = connect_to_milvus(URI=st.secrets["ZILLIZ_ENDPOINT"],USER=st.secrets["ZILLIZ_USER_NAME"],PASS=st.secrets["ZILLIZ_PASSWORD"])
 
+client = OpenAI(api_key=LLM_API_KEY, base_url="https://integrate.api.nvidia.com/v1")
+
 # Streamlit app title and intro
 st.title("🌿 AyurVeda AI ChatBot 🌿")
 st.image("AyurVedaBot.webp", width=500)
@@ -45,7 +47,7 @@ if user_input := st.chat_input("Tell me about your ailment or ask an Ayurvedic h
     user_message = {"role": "user", "content": user_input}
     
     # Generate response using LLMRails, which includes guardrails processing
-    response = rails.generate(messages=[user_message], api_key=LLM_API_KEY)
+    response = rails.generate(messages=[user_message])
     
     if response:  # If guardrails provide a response, use it
         assistant_reply = response["content"]
@@ -62,7 +64,6 @@ if user_input := st.chat_input("Tell me about your ailment or ask an Ayurvedic h
         context = "\n".join(reranked_text_chunks)
         prompt = f"Question: {user_input}\n\nContext:\n{context}\n\nAnswer:"
 
-        client = OpenAI(api_key=LLM_API_KEY, base_url="https://integrate.api.nvidia.com/v1")
         response_placeholder = st.empty()
         full_response = ""
 
