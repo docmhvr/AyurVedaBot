@@ -19,7 +19,7 @@ client = OpenAI(api_key=LLM_API_KEY, base_url="https://integrate.api.nvidia.com/
 
 # Streamlit app title and intro
 st.title("🌿 AyurVeda AI ChatBot 🌿")
-st.image("AyurVedaBot.webp", width=500)
+st.image("AyurVedaBot.webp", width=720)
 st.write("Welcome to AyurVeda AI, bringing you ancient Ayurvedic solutions for health and well-being!")
 
 # Initialize session state to store chat history
