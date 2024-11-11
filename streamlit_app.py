@@ -1,6 +1,6 @@
 import streamlit as st
 from openai import OpenAI
-from utils import connect_to_milvus, load_milvus_collection, generate_embedding, rerank_results
+from utils import connect_to_milvus, generate_embedding, rerank_results
 from nemoguardrails import RailsConfig, LLMRails
 
 # Load the RailsConfig from the 'config' directory
