@@ -5,17 +5,17 @@ from pymilvus import connections, Collection
 from openai import OpenAI  # Access NVIDIA API models for embedding and reranker
 
 # Connect to Milvus on Zilliz Cloud
-def connect_to_milvus():
+def connect_to_milvus(URI,USER,PASS):
     connections.connect(
         alias="default",
-        uri=st.secrets("ZILLIZ_ENDPOINT"),
-        user=st.secrets("ZILLIZ_USER_NAME"),
-        password=st.secrets("ZILLIZ_PASSWORD")
+        uri=URI,
+        user=USER,
+        password=PASS
     )
     # print("Connected to Milvus.")
 
-# Load Milvus collection
-def load_milvus_collection(collection_name="ayurveda_embeddings"):
+    # Load Milvus collection
+    collection_name="ayurveda_embeddings"
     return Collection(name=collection_name)
 
 # Generate embeddings for a query text

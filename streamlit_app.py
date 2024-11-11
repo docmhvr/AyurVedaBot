@@ -13,8 +13,7 @@ RERANK_API_KEY = st.secrets["NVIDIA_RERANK_API_KEY"]
 LLM_API_KEY = st.secrets["NVIDIA_API_KEY"]
 
 # Connect to Milvus and load collection
-connect_to_milvus()
-collection = load_milvus_collection()
+collection = connect_to_milvus(URI = st.secrets("ZILLIZ_ENDPOINT"),USER=st.secrets=("ZILLIZ_USER_NAME"),PASS=sr.secrets("ZILLIZ_PASSWORD"))
 
 # Streamlit app title and intro
 st.title("🌿 AyurVeda AI ChatBot 🌿")
