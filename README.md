@@ -4,7 +4,7 @@ Welcome to **AyurVeda AI ChatBot**, a retrieval-augmented generation (RAG) chatb
 
 The chatbot is hosted on **Streamlit Cloud**, making it easily accessible to users who seek natural and safe health advice grounded in the principles of Ayurveda.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ayurvedabot.streamlit.app/)
 
 ## ✨ Features
 
